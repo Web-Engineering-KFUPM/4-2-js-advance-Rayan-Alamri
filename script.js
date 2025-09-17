@@ -22,6 +22,28 @@ Task:
 4) Create an instance/object and output its attributes using the getter(s).
 */
 
+const Student = {
+  first: "Rayan",
+  last: "Alamri",
+  _gpa: 3.8,  
+  get fullName() {     
+    return this.first + " " + this.last;
+  },
+  get gpa() { 
+    return this._gpa;
+  },
+  set updateGpa(newGpa) {
+    if (newGpa >= 0 && newGpa <= 4) {
+      this._gpa = newGpa;
+    }
+  }
+};
+
+console.log(Student.fullName);
+console.log(Student._gpa);
+
+//Taks 1 Finshed
+
 // ====================================
 // TODO-2: OBJECT AS MAP + for...in LOOP
 // ====================================
@@ -30,6 +52,11 @@ Task:
 1) Make an object used as a "map" (key → value), e.g., course codes → titles.
 2) Iterate over it with for...in and display each key and value.
 */
+const courseTitles = { ICS104: "Python", ICS108: "OOP", ICS202: "Data Structures", SWE363: "WEB DEV"};
+
+for (const key in courseTitles) {
+   console.log(key + ": "+ courseTitles[key]);
+}
 
 // =========================================
 // TODO-3: STRING OBJECT — charAt() & length
@@ -39,6 +66,10 @@ Task:
 1) Create a String object or plain string.
 2) Use .charAt(index) and .length to output characters and size.
 */
+const str = "Hello";
+console.log(str.charAt(0));
+console.log(str.length);
+
 
 // ===================================
 // TODO-4: DATE — day, month, and year
@@ -49,6 +80,11 @@ Task:
 2) Find and display the current day of month, month (0–11), and year.
 //    (Hint: getDate(), getMonth(), getFullYear() )
 */
+const date = new Date();
+console.log(date.getDate());
+console.log(date.getMonth() );
+console.log(date.getFullYear());
+
 
 // ============================================================
 // TODO-5: ARRAY + SPREAD — find MIN and MAX from 10 numbers
@@ -59,6 +95,12 @@ Task:
 2) Use spread syntax with Math.min(...) and Math.max(...) to find extremes.
 3) Display both values.
 */
+const nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+console.log(Math.min(...nums));
+console.log(Math.max(...nums));
+
+
+
 
 // ===================================================================
 // TODO-6: EXCEPTIONS — try/catch/finally with EMPTY ARRAY edge case
@@ -70,6 +112,23 @@ Task:
 3) Handle the error using try { ... } catch (e) { ... } finally { ... } and log messages
    in each block so you can see the flow of control.
 */
+function firstItem(arr) {
+  if (!Array.isArray(arr) || arr.length === 0) {
+    throw new Error("Array must be non-empty.");
+  }
+  return Math.max(...arr);
+}
+
+try {
+  const x = firstItem([]);
+} catch (e) {
+  console.log("Error: " + e.message);
+  
+} finally {
+   console.log("Finished Executing");
+   
+}
+
 
 // ===================================================================================
 // TODO-7: REGEX + forEach — find words containing 'ab' and log matches from the list
@@ -82,5 +141,13 @@ Given: const words = ["ban", "babble", "make", "flab"];
 3) For matches, log "<word> matches!".
 4) Display the words that matches the pattern.
 */
+const words = ["ban", "babble", "make", "flab"];
+const reg = /ab/;
+
+words.forEach(w => {
+  if (reg.test(w)) {
+    console.log(`${w} matches!`);
+  }
+});
 
 // End of Advance JavaScript Lab — good luck!
